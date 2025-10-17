@@ -3,12 +3,14 @@ model:
   pretrained: "./YoLo_Seg/backborn_model/yolo11s-seg.pt"
 
 # --- Data ---
+# 14일 이전에 모은 약 300개 데이터 사용
 data:
-  yaml: "./YoLo_Seg/config_seg/train_data/data.yaml"
+  yaml: "./datasets/Segmentation_Data/Train_1017/data.yaml"
 
 # --- Training ---
 train:
-  project: "./YoLo_Seg/results"
+  project: "./YoLo_Seg/train_results"
+  name: "1017FirstTrain"
   epochs: 300
   imgsz: 640
   batch: 8

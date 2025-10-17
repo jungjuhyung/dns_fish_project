@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import argparse
 import yaml
 from pathlib import Path
 from ultralytics import YOLO
 
-train_name = "train_seg"
-config_path = f"./YoLo_Seg/config_seg/train_param/{train_name}.yaml"
+# 실험 이름과 설정 파일 경로
+train_name = "1017FirstTrain"
+config_path = f"./YoLo_Seg/config_seg/{train_name}.yaml"
 
 def load_config(config_path: str) -> dict:
     with open(config_path, "r", encoding="utf-8") as f:
@@ -52,15 +52,20 @@ def main():
         mosaic=train_cfg.get("mosaic", 0.0),
         patience=train_cfg.get("patience", 30),
         project=save_dir,
-        name=train_name,
+        name=train_cfg.get("name", "train"),
         exist_ok=True,
         verbose=True
     )
 
     # 5️⃣ 학습 완료 후 검증
-    best = Path(save_dir) / train_name / "weights" / "best.pt"
+    best = Path(save_dir) / train_cfg.get("name", "train") / "weights" / "best.pt"
     model = YOLO(str(best))
-    metrics = model.val(task="segment", data=data_yaml, imgsz=train_cfg.get("imgsz", 640), device="cpu")
+    metrics = model.val(
+        task="segment", 
+        data=data_yaml, 
+        imgsz=train_cfg.get("imgsz", 640), 
+        device=train_cfg.get("device", 0)
+    )
     print(metrics)
 
 if __name__ == "__main__":

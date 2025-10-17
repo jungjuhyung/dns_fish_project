@@ -7,11 +7,12 @@ from ultralytics import YOLO
 
 # 실험 이름과 설정 파일 경로
 train_name = "train_bb"
-config_path = f"./YoLo_BB/config_bb/train_param/{train_name}.yaml"
+config_path = f"./YoLo_BB/config_bb/{train_name}.yaml"
 
 def load_config(config_path: str) -> dict:
     with open(config_path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        cfg = yaml.safe_load(f)
+    return cfg
 
 def main():
     # 1) 설정 로드
@@ -51,24 +52,21 @@ def main():
         mosaic=train_cfg.get("mosaic", 0.0),
         patience=train_cfg.get("patience", 30),
         project=save_dir,
-        name=train_name,               # runs/<project>/<name>
+        name=train_cfg.get("name", "train"),               # runs/<project>/<name>
         exist_ok=True,
         verbose=True
     )
 
     # 5) 검증 (best.pt 기준)
-    best = Path(save_dir) / train_name / "weights" / "best.pt"
+    best = Path(save_dir) / train_cfg.get("name", "train") / "weights" / "best.pt"
     model = YOLO(str(best))
     metrics = model.val(
         task="detect",
         data=data_yaml,
         imgsz=train_cfg.get("imgsz", 640),
-        device="cpu"
+        device=train_cfg.get("device", 0)
     )
     print(metrics)
-
-    # 6) (선택) 샘플 추론
-    # model.predict(source="./some_images", imgsz=640, save=True, conf=0.25)
 
 if __name__ == "__main__":
     main()

@@ -2,12 +2,15 @@
 model:
   pretrained: ./YoLo_BB/backborn_model/yolo11s.pt   # 검출 전용 가중치(.pt)
 
+# --- Data ---
+# 14일 이전에 모은 약 300개 데이터 사용
 data:
-  yaml: ./YoLo_BB/config_bb/train_data/data.yaml
+  yaml: "./datasets/Bounding_Box/Train_1017/data.yaml"
 
 # --- Training ---
 train:
-  project: ./YoLo_BB/results
+  project: ./YoLo_BB/train_results
+  name: train_bb
   epochs: 300
   imgsz: 640
   batch: 8
