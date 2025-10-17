@@ -9,19 +9,38 @@ __pycache__/
 .vscode/
 
 # 데이터 생성용 코드
-Data_Preprocessing/Edit/
-Data_Preprocessing/output_frame/
-Data_Preprocessing/output_video/
+Data_Preprocessing/Edit/**
+Data_Preprocessing/output_frame/**
+Data_Preprocessing/output_video/**
+
+!Data_Preprocessing/Edit/
+!Data_Preprocessing/output_frame/
+!Data_Preprocessing/output_video/
+
 
 # 학습 및 테스트 데이터
-datasets/
+# datasets 폴더 내부 모든 파일 제외
+datasets/**
+
+# 단, datasets 폴더 자체와 하위 폴더 구조는 유지
+!datasets/
+!datasets/**/
 
 # YOLO 바운딩박스 모델
-YoLo_BB/backbone_model/
-YoLo_BB/results/
-YoLo_BB/test_results/
+YoLo_BB/backbone_model/**
+YoLo_BB/results/**
+YoLo_BB/test_results/**
+
+!YoLo_BB/backbone_model/
+!YoLo_BB/results/
+!YoLo_BB/test_results/
+
 
 # YOLO 세그먼테이션 모델
-YoLo_Seg/backbone_model/
-YoLo_Seg/results/
-YoLo_Seg/test_results/
+YoLo_Seg/backbone_model/**
+YoLo_Seg/results/**
+YoLo_Seg/test_results/**
+
+!YoLo_Seg/backbone_model/
+!YoLo_Seg/results/
+!YoLo_Seg/test_results/
