@@ -17,11 +17,11 @@ Data_Preprocessing/output_video/
 datasets/
 
 # YOLO 바운딩박스 모델
-YoLo_BB/backbone_model
-YoLo_BB/results
-YoLo_BB/test_results
+YoLo_BB/backbone_model/
+YoLo_BB/results/
+YoLo_BB/test_results/
 
 # YOLO 세그먼테이션 모델
-YoLo_Seg/backbone_model
-YoLo_Seg/results
-YoLo_Seg/test_results
+YoLo_Seg/backbone_model/
+YoLo_Seg/results/
+YoLo_Seg/test_results/
