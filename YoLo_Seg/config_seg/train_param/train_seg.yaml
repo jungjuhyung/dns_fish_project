@@ -1,0 +1,35 @@
+# --- Model ---
+model:
+  pretrained: "./YoLo_Seg/backborn_model/yolo11s-seg.pt"
+
+# --- Data ---
+data:
+  yaml: "./YoLo_Seg/config_seg/train_data/data.yaml"
+
+# --- Training ---
+train:
+  project: "./YoLo_Seg/results"
+  epochs: 300
+  imgsz: 640
+  batch: 8
+  workers: 2
+  device: 0
+  optimizer: "auto"
+  lr0: 0.01
+  lrf: 0.01
+
+  # augmentation
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.0
+
+  # early stop
+  patience: 30

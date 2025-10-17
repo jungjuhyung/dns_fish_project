@@ -1,0 +1,35 @@
+# ./YoLo_Det/config_det/train_param/train_det.yaml
+model:
+  pretrained: ./YoLo_BB/backborn_model/yolo11s.pt   # 검출 전용 가중치(.pt)
+
+data:
+  yaml: ./YoLo_BB/config_bb/train_data/data.yaml
+
+# --- Training ---
+train:
+  project: ./YoLo_BB/results
+  epochs: 300
+  imgsz: 640
+  batch: 8
+  workers: 2
+  device: 0                    # GPU 0, 또는 'cpu'
+  optimizer: auto
+  lr0: 0.01
+  lrf: 0.01
+  
+  # augmentation
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.0
+
+  # early stop
+  patience: 30
+

@@ -1,0 +1,15 @@
+path: ./datasets/Bounding_Box/Train_1017
+
+train: train
+val: valid
+#test: ../test/images
+
+nc: 3
+names: ['Eel', 'Kr', 'Of']
+
+roboflow:
+  workspace: fish-o7bkd
+  project: fish250-vwldz
+  version: 7
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/fish-o7bkd/fish250-vwldz/dataset/7
