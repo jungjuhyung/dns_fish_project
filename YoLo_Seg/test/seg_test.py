@@ -6,13 +6,13 @@ import numpy as np
 from ultralytics import YOLO
 
 # 경로 설정
-MODEL_VERSION = f"1017FirstTrain"
-TEST_DATA = "TestData_Half"
+MODEL_VERSION = f"1021Total01Model"
+TEST_DATA = "Class_Test02"
 TEST_DATA_YAML  = f"./datasets/Segmentation_Data/{TEST_DATA}/data.yaml"
 TEST_DATA_SOURCE  = f"./datasets/Segmentation_Data/{TEST_DATA}/test/images"
 
 MODEL_PATH = f"./YoLo_Seg/train_results/{MODEL_VERSION}/weights/best.pt"   # 학습된 모델 경로
-SAVE_DIR   = f"./YoLo_Seg/test_results/{MODEL_VERSION}_Res"                                 # 혼동행렬 저장 폴더
+SAVE_DIR   = f"./YoLo_Seg/test_results/{MODEL_VERSION}_{TEST_DATA}_Res"                                 # 혼동행렬 저장 폴더
 
 # 모델 로드
 model = YOLO(MODEL_PATH)

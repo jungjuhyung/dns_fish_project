@@ -4,9 +4,11 @@
 import yaml
 from pathlib import Path
 from ultralytics import YOLO
+import time
+import torch
 
 # 실험 이름과 설정 파일 경로
-train_name = "1017FirstTrain"
+train_name = "1021Total01TrainCOCO"
 config_path = f"./YoLo_Seg/config_seg/{train_name}.yaml"
 
 def load_config(config_path: str) -> dict:
@@ -20,12 +22,13 @@ def main():
 
     # YAML에서 파라미터 꺼내기
     model_path = cfg["model"]["pretrained"]
+    
     data_yaml  = cfg["data"]["yaml"]
     save_dir   = cfg["train"]["project"]
     train_cfg  = cfg["train"]
 
     # 모델 로드
-    model = YOLO(model_path)
+    model = YOLO(str(model_path))
 
     # 학습 실행
     model.train(
@@ -64,7 +67,8 @@ def main():
         task="segment", 
         data=data_yaml, 
         imgsz=train_cfg.get("imgsz", 640), 
-        device=train_cfg.get("device", 0)
+        device=train_cfg.get("device", 0),
+        project=f"{save_dir}/valid"
     )
     print(metrics)
 
