@@ -8,7 +8,7 @@ import time
 import torch
 
 # 실험 이름과 설정 파일 경로
-train_name = "1023CountTotal01Train"
+train_name = "1023DCTotal01Train"
 config_path = f"./YoLo_Seg/config_seg/{train_name}.yaml"
 
 def load_config(config_path: str) -> dict:
