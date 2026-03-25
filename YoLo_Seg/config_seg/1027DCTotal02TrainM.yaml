@@ -1,0 +1,37 @@
+# --- Model ---
+model:
+  pretrained: "yolo11m-seg.pt"
+
+# --- Data ---
+# 23일 새우수조 데이터 약600개 + 이전 분류학습 데이터 약2200개
+data:
+  yaml: "./datasets/Segmentation_Data/Train_DC_Total02/data.yaml"
+
+# --- Training ---
+train:
+  project: "./YoLo_Seg/train_results"
+  name: "1027DCTotal02TrainM"
+  epochs: 500
+  imgsz: 640
+  batch: 8
+  workers: 2
+  device: 0
+  optimizer: "auto"
+  lr0: 0.01
+  lrf: 0.01
+
+  # augmentation
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.0
+
+  # early stop
+  patience: 30
